@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glamcurl — Custom Mobile Apps for Shops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ec4899; --pink-dark:#be185d; --pink-darker:#9d174d;
+  --pink-50:#fdf2f8; --pink-100:#fce7f3; --pink-200:#fbcfe8;
+  --ink:#1f2937; --muted:#6b7280; --white:#ffffff; --line:#f9d5e5;
+  --shadow:0 10px 30px rgba(236,72,153,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);line-height:1.65}
+h1,h2,h3,.brand{font-family:'Poppins',sans-serif;line-height:1.25}
+img{max-width:100%}
+.container{width:min(1140px,92%);margin:0 auto}
+section{padding:84px 0}
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;color:var(--pink-darker);text-decoration:none}
+.brand .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--pink-darker));display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+.nav-links a:hover{color:var(--pink-dark)}
+.btn{display:inline-block;padding:13px 28px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s}
+.btn-pink{background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;box-shadow:var(--shadow)}
+.btn-pink:hover{transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--pink-dark);border:2px solid var(--pink-200)}
+.btn-ghost:hover{border-color:var(--pink)}
+.nav-cta{padding:10px 22px}
+.burger{display:none;background:none;border:none;font-size:26px;color:var(--pink-dark);cursor:pointer}
+/* ---------- hero ---------- */
+.hero{background:linear-gradient(180deg,var(--pink-50),#fff 75%);padding:70px 0 90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.eyebrow{display:inline-block;background:var(--pink-100);color:var(--pink-dark);font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin-bottom:18px}
+.hero h1 .pink{color:var(--pink);position:relative}
+.hero p.lead{font-size:18px;color:var(--muted);margin-bottom:32px;max-width:520px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+/* phone mockup */
+.phone-wrap{display:flex;justify-content:center}
+.phone{width:280px;height:580px;background:#111;border-radius:44px;padding:12px;box-shadow:0 30px 60px rgba(157,23,77,.28);position:relative}
+.phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:110px;height:24px;background:#111;border-radius:14px;z-index:2}
+.screen{background:#fff;border-radius:34px;height:100%;overflow:hidden;display:flex;flex-direction:column}
+.app-head{background:linear-gradient(135deg,var(--pink),var(--pink-darker));color:#fff;padding:34px 18px 18px;text-align:center}
+.app-head h4{font-family:'Poppins';font-size:17px}
+.app-head small{opacity:.85;font-size:12px}
+.loyalty{margin:14px;background:var(--pink-50);border:1.5px dashed var(--pink);border-radius:14px;padding:14px;text-align:center}
+.loyalty b{color:var(--pink-dark);font-size:15px}
+.loyalty .pts{font-size:12px;color:var(--muted)}
+.progress{height:8px;background:var(--pink-100);border-radius:99px;margin-top:8px;overflow:hidden}
+.progress i{display:block;height:100%;width:80%;background:linear-gradient(90deg,var(--pink),var(--pink-dark));border-radius:99px}
+.app-row{display:flex;gap:10px;padding:0 14px;margin-top:4px}
+.app-card{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;box-shadow:0 4px 10px rgba(236,72,153,.08)}
+.app-card .ic{width:34px;height:34px;border-radius:10px;background:var(--pink-100);color:var(--pink-dark);display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
+.app-card small{font-size:11px;font-weight:600}
+.app-btn{margin:14px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;text-align:center;border-radius:12px;padding:12px;font-weight:700;font-family:'Poppins';font-size:14px}
+.push{margin:0 14px 14px;background:#111;color:#fff;border-radius:12px;padding:10px 12px;font-size:12px;display:flex;gap:10px;align-items:center}
+.push .dot{width:34px;height:34px;border-radius:9px;background:var(--pink);flex:none;display:flex;align-items:center;justify-content:center;font-weight:800}
+/* ---------- stats ---------- */
+.stats{background:linear-gradient(135deg,var(--pink-dark),var(--pink-darker));color:#fff;padding:44px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat b{font-family:'Poppins';font-size:34px;display:block}
+.stat span{opacity:.85;font-size:14px}
+/* ---------- sections ---------- */
+.sec-head{text-align:center;max-width:680px;margin:0 auto 52px}
+.kicker{color:var(--pink);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:13px;margin-bottom:10px}
+.sec-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;margin-bottom:14px}
+.sec-head p{color:var(--muted)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center}
+.about-img{background:linear-gradient(135deg,var(--pink-100),var(--pink-200));border-radius:24px;min-height:380px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-img .big{font-family:'Poppins';font-weight:800;font-size:clamp(40px,6vw,72px);color:#fff;text-shadow:0 4px 24px rgba(157,23,77,.35);text-align:center;line-height:1.15;padding:20px}
+.check-list{list-style:none;margin-top:22px;display:grid;gap:14px}
+.check-list li{display:flex;gap:12px;align-items:flex-start}
+.tick{flex:none;width:26px;height:26px;border-radius:50%;background:var(--pink-100);color:var(--pink-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin-top:2px}
+/* benefits */
+.benefits{background:var(--pink-50)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border-radius:20px;padding:32px 28px;box-shadow:0 6px 20px rgba(157,23,77,.07);border:1px solid var(--line);transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .ic{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.card h3{font-size:19px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:15px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:step}
+.step{background:#fff;border:2px solid var(--pink-100);border-radius:20px;padding:36px 28px;text-align:center;position:relative}
+.step .num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:#fff;font-family:'Poppins';font-weight:800;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+/* testimonials */
+.testis{background:var(--pink-50)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi{background:#fff;border-radius:20px;padding:30px;border:1px solid var(--line)}
+.testi .stars{color:var(--pink);letter-spacing:3px;margin-bottom:12px;font-size:15px}
+.testi p{font-size:15px;color:var(--ink);margin-bottom:18px}
+.testi .who{display:flex;align-items:center;gap:12px}
+.avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--pink-200),var(--pink));color:#fff;font-family:'Poppins';font-weight:700;display:flex;align-items:center;justify-content:center}
+.who b{display:block;font-size:15px}
+.who small{color:var(--muted)}
+/* faq */
+.faq-list{max-width:760px;margin:0 auto;display:grid;gap:14px}
+.faq{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.faq button{width:100%;background:none;border:none;text-align:left;padding:20px 24px;font-family:'Poppins';font-weight:600;font-size:16px;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq button .plus{color:var(--pink);font-size:22px;flex:none;transition:transform .2s}
+.faq .ans{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:15px}
+.faq .ans p{padding:0 24px 20px}
+.faq.open .ans{max-height:220px}
+.faq.open .plus{transform:rotate(45deg)}
+/* cta */
+.cta{background:linear-gradient(135deg,var(--pink),var(--pink-darker));border-radius:28px;color:#fff;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.cta h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:14px}
+.cta p{opacity:.9;max-width:560px;margin:0 auto 30px}
+.btn-white{background:#fff;color:var(--pink-dark);box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.btn-white:hover{transform:translateY(-2px)}
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-info .row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.contact-info .ic{flex:none;width:44px;height:44px;border-radius:14px;background:var(--pink-100);color:var(--pink-dark);display:flex;align-items:center;justify-content:center}
+form.contact{background:var(--pink-50);border:1px solid var(--line);border-radius:20px;padding:34px;display:grid;gap:16px}
+form.contact input,form.contact textarea{width:100%;padding:14px 16px;border:1.5px solid var(--pink-200);border-radius:12px;font-family:inherit;font-size:15px;background:#fff}
+form.contact input:focus,form.contact textarea:focus{outline:none;border-color:var(--pink)}
+.thanks{display:none;background:#fff;border:2px solid var(--pink);border-radius:14px;padding:18px;text-align:center;color:var(--pink-dark);font-weight:600}
+/* footer */
+footer{background:#1c0a14;color:#f9d5e5;padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.foot-grid h4{font-family:'Poppins';margin-bottom:16px;color:#fff;font-size:16px}
+.foot-grid ul{list-style:none;display:grid;gap:10px}
+.foot-grid a{color:#f9d5e5;text-decoration:none;font-size:14px}
+.foot-grid a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(249,213,229,.2);padding-top:24px;text-align:center;font-size:13px;opacity:.8}
+@media(max-width:900px){
+  .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .cards,.steps,.testi-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:18px 4%;gap:14px;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .burger{display:block}
+  .nav-cta{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){.cards,.steps,.testi-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="brand" href="#top"><span class="logo">G</span> Glamcurl</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-pink nav-cta">Get Your App</a>
+    <button class="burger" id="burger" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Custom mobile apps for shops</span>
+      <h1>Your shop deserves <span class="pink">its own app</span></h1>
+      <p class="lead">We build beautiful, custom iOS &amp; Android apps for shops — so your customers order, book and buy from <b>you</b>, not a marketplace that takes a cut.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-pink">Get a Free Demo</a>
+        <a href="#benefits" class="btn btn-ghost">See the Benefits</a>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone"><div class="screen">
+        <div class="app-head"><h4>Your Shop App</h4><small>Powered by Glamcurl</small></div>
+        <div class="loyalty"><b>VIP Loyalty Card</b><div class="pts">80 / 100 points to a free reward</div><div class="progress"><i></i></div></div>
+        <div class="app-row">
+          <div class="app-card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><small>Book</small></div>
+          <div class="app-card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div><small>Order</small></div>
+          <div class="app-card"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><small>Rewards</small></div>
+        </div>
+        <div style="flex:1"></div>
+        <div class="push"><span class="dot">G</span><span><b>Weekend offer:</b> 20% off for app customers only</span></div>
+        <div class="app-btn">Order Now</div>
+      </div></div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><b>3x</b><span>Repeat orders from app customers</span></div>
+    <div class="stat"><b>&minus;70%</b><span>No-shows with smart reminders</span></div>
+    <div class="stat"><b>0%</b><span>Commission on your own app orders</span></div>
+    <div class="stat"><b>24/7</b><span>Your shop, open on their phone</span></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-head"><div class="kicker">All about us</div><h2>We make apps for shops. That's all we do.</h2><p>Glamcurl is a small team obsessed with one thing — giving independent shops the same mobile power the big brands have.</p></div>
+    <div class="about-grid">
+      <div class="about-img"><div class="big">Your shop,<br>in their pocket</div></div>
+      <div>
+        <h3 style="font-size:22px;margin-bottom:12px">Why we exist</h3>
+        <p style="color:var(--muted)">Marketplaces charge you up to 30% on every order and own your customer relationship. We flip that: a custom app with <b>your</b> name, <b>your</b> colours and <b>your</b> customers — built for you, owned by you.</p>
+        <ul class="check-list">
+          <li><span class="tick">&#10003;</span><span><b>Custom-built for your shop</b> — not a generic template with your logo slapped on.</span></li>
+          <li><span class="tick">&#10003;</span><span><b>iOS &amp; Android</b> — one build, both stores, we handle submission.</span></li>
+          <li><span class="tick">&#10003;</span><span><b>Done for you</b> — design, build, launch and updates, all handled.</span></li>
+          <li><span class="tick">&#10003;</span><span><b>Made for shop owners</b> — no tech skills needed, ever.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits" id="benefits">
+  <div class="container">
+    <div class="sec-head"><div class="kicker">Benefits</div><h2>What your own app does for your shop</h2><p>When a shop owner visits this page, this is the pitch: real, practical benefits — not tech jargon.</p></div>
+    <div class="cards">
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><h3>Free push notifications</h3><p>Ping your customers' lock screens about offers, slow-day deals or restocks — free, instant, and way more effective than SMS or email.</p></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h3>Loyalty &amp; rewards built in</h3><p>Digital stamp cards and points turn one-time buyers into regulars who come back on their own — automatically.</p></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div><h3>Ordering &amp; booking, 24/7</h3><p>Customers order, book or reserve any time — even when your shutters are down. You wake up to confirmed sales.</p></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="23" x2="12" y2="1"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Zero commission</h3><p>Every rupee from an app order is yours. No 20–30% marketplace cut eating your margins.</p></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div><h3>Your brand on their home screen</h3><p>Your icon sits next to the big apps on your customers' phones — a daily reminder that you exist.</p></div>
+      <div class="card"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 3 5-8"/></svg></div><h3>Know your customers</h3><p>See who buys what, who hasn't visited in a while, and win them back with a targeted offer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="sec-head"><div class="kicker">Simple process</div><h2>From your shop to the app stores in 3 steps</h2></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3 style="margin-bottom:10px">Tell us about your shop</h3><p style="color:var(--muted);font-size:15px">A short call. We learn your menu, services, offers and branding.</p></div>
+      <div class="step"><div class="num">2</div><h3 style="margin-bottom:10px">We design &amp; build</h3><p style="color:var(--muted);font-size:15px">You approve the design; we build your custom iOS &amp; Android app.</p></div>
+      <div class="step"><div class="num">3</div><h3 style="margin-bottom:10px">Launch &amp; grow</h3><p style="color:var(--muted);font-size:15px">We publish it, you share it with customers, and watch repeat orders grow.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testis" id="reviews">
+  <div class="container">
+    <div class="sec-head"><div class="kicker">Reviews</div><h2>Shop owners love their apps</h2></div>
+    <div class="testi-grid">
+      <div class="testi"><div class="stars">★★★★★</div><p>"Our regulars order on the app before they even leave home. Weekend rush is finally manageable."</p><div class="who"><span class="avatar">R</span><div><b>Rahul S.</b><small>Café owner</small></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p>"The loyalty points brought back customers I hadn't seen in months. It paid for itself in weeks."</p><div class="who"><span class="avatar">P</span><div><b>Priya M.</b><small>Boutique owner</small></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p>"No more paying commission on every order. My app customers are my most profitable customers."</p><div class="who"><span class="avatar">A</span><div><b>Arjun K.</b><small>Restaurant owner</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="sec-head"><div class="kicker">FAQ</div><h2>Questions shop owners ask us</h2></div>
+    <div class="faq-list">
+      <div class="faq"><button>I'm not technical at all. Can I still have an app?<span class="plus">+</span></button><div class="ans"><p>Absolutely — that's the whole point. We handle design, development, app-store submission and updates. You just tell us about your shop.</p></div></div>
+      <div class="faq"><button>How long does it take to build?<span class="plus">+</span></button><div class="ans"><p>Most shop apps go from first call to live on the app stores in 3–4 weeks, depending on features.</p></div></div>
+      <div class="faq"><button>Will it work on both iPhone and Android?<span class="plus">+</span></button><div class="ans"><p>Yes. Every app we build ships on both iOS and Android from a single build.</p></div></div>
+      <div class="faq"><button>Do I keep my customer data?<span class="plus">+</span></button><div class="ans"><p>100%. Your customers, your data, your relationship — no marketplace in the middle.</p></div></div>
+      <div class="faq"><button>What does it cost?<span class="plus">+</span></button><div class="ans"><p>It depends on the features your shop needs. Tell us about your shop and we'll send a clear, fixed quote — no surprises.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:20px">
+  <div class="container">
+    <div class="cta" style="margin-bottom:70px">
+      <h2>Ready to put your shop in their pocket?</h2>
+      <p>Get a free demo app mockup with your shop's name on it — no commitment.</p>
+      <a href="#contact-form" class="btn btn-white">Get My Free Demo</a>
+    </div>
+    <div class="sec-head"><div class="kicker">Contact</div><h2>Let's talk about your shop</h2><p>Tell us a little about your business and we'll get back within 24 hours.</p></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="row"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div><div><b>Email</b><br><span style="color:var(--muted)">hello@glamcurl.us</span></div></div>
+        <div class="row"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></div><div><b>Phone</b><br><span style="color:var(--muted)">+1 (555) 012-3456</span></div></div>
+        <div class="row"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><b>Hours</b><br><span style="color:var(--muted)">Mon–Sat, 9am–7pm</span></div></div>
+      </div>
+      <form class="contact" id="contact-form" onsubmit="event.preventDefault();document.getElementById('thanks').style.display='block';this.reset();">
+        <input type="text" placeholder="Your name" required>
+        <input type="text" placeholder="Your shop name" required>
+        <input type="tel" placeholder="Phone number" required>
+        <textarea rows="4" placeholder="Tell us about your shop..."></textarea>
+        <button type="submit" class="btn btn-pink">Request Free Demo</button>
+        <div class="thanks" id="thanks">Thanks! We'll be in touch within 24 hours.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div><a class="brand" href="#top" style="color:#fff;margin-bottom:14px;display:inline-flex"><span class="logo">G</span> Glamcurl</a><p style="font-size:14px;max-width:300px">Custom mobile apps for shops. Your brand, your customers, your app — on iOS &amp; Android.</p></div>
+      <div><h4>Explore</h4><ul><li><a href="#about">About us</a></li><li><a href="#benefits">Benefits</a></li><li><a href="#how">How it works</a></li><li><a href="#reviews">Reviews</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#contact">Get a free demo</a></li><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@glamcurl.us">hello@glamcurl.us</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">&copy; 2026 Glamcurl. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('burger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open')});
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open')})});
+document.querySelectorAll('.faq button').forEach(function(b){b.addEventListener('click',function(){var f=b.parentElement;var was=f.classList.contains('open');document.querySelectorAll('.faq').forEach(function(x){x.classList.remove('open')});if(!was)f.classList.add('open')})});
+</script>
+</body>
+</html>
